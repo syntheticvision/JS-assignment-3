@@ -12,6 +12,6 @@ module.exports = {
     require('daisyui'),
   ],
   daisyui: {
-    themes: ["fantasy"], // You can change this theme as needed
+    themes: ["hero"], // You can change this theme as needed
   }
 }
