@@ -3,32 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
-    <link href="/css/main.css" rel="stylesheet">
+    <title>About - Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-    <nav>
-        <div class="container mx-auto">
-            <a href="/">Lego Collection</a>
-            <a class="active" href="/about">About</a>
-            <details>
-                <summary>Theme</summary>
-                <a href="/lego/sets?theme=tech">Technic</a>
-                <a href="/lego/sets?theme=town">Town</a>
-                <a href="/lego/sets?theme=space">Space</a>
-            </details>
-        </div>
-    </nav>
-    <div class="container mx-auto">
-        <div class="hero">
-            <h1>About</h1>
-            <p>All about me</p>
-        </div>
-        <div class="grid">
-            <div class="column">
-                <p>I am a student at Seneca College in CPP program.</p>
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-xl font-bold">
+                <a href="/" class="hover:text-gray-300">Lego Collection</a>
+            </div>
+            <div class="text-white">
+                <a href="/about" class="active text-gray-300">About</a>
+                <div class="dropdown inline-block relative">
+                    <button class="text-white hover:text-gray-300 focus:outline-none">
+                        Theme
+                    </button>
+                    <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                        <li><a href="/lego/sets?theme=technic" class="block px-4 py-2 text-sm hover:bg-gray-200">Technic</a></li>
+                        <li><a href="/lego/sets?theme=space" class="block px-4 py-2 text-sm hover:bg-gray-200">Space</a></li>
+                        <li><a href="/lego/sets?theme=castle" class="block px-4 py-2 text-sm hover:bg-gray-200">Castle</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-500 py-20">
+        <div class="container mx-auto">
+            <div class="hero">
+                <h1 class="text-4xl font-bold text-white mb-4">About</h1>
+                <p class="text-white text-lg">All about me...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Section -->
+    <section class="container mx-auto mt-8 grid grid-cols-2 gap-8">
+        <div class="column">
+            <img src="path/to/your/image.jpg" alt="Your Image" class="w-full">
+        </div>
+        <div class="column">
+            <p class="text-lg">I'm a CPP student at Seneca College</p>
+        </div>
+    </section>
 </body>
 </html>
