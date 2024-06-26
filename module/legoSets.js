@@ -1,13 +1,16 @@
-const { forEach } = require('../data/setData');
-const { find } = require('../data/themeData');
+const setData = require('../data/setData');
+const themeData = require('../data/themeData');
 
 let sets = [];
 
 function initialize() {
     return new Promise((resolve, reject) => {
         try {
-            forEach(set => {
-                const theme = find(theme => theme.id === set.theme_id);
+            console.log('setData:', setData); // Debugging statement
+            console.log('themeData:', themeData); // Debugging statement
+            
+            setData.forEach(set => {
+                const theme = themeData.find(theme => theme.id === set.theme_id);
                 const setWithTheme = {
                     ...set,
                     theme: theme ? theme.name : "Unknown"

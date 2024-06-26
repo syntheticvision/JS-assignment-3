@@ -1,4 +1,4 @@
-[
+module.exports = [
     {
         "set_num": "001-1",
         "name": "Gears",
