@@ -1,5 +1,5 @@
-import { forEach } from "../data/setData";
-import { find } from "../data/themeData";
+const { forEach } = require('../data/setData');
+const { find } = require('../data/themeData');
 
 let sets = [];
 
@@ -41,7 +41,7 @@ function getSetByNum(setNum) {
                 reject(`Unable to find set with set_num: ${setNum}`);
             }
         } catch (error) {
-            reject(error); 
+            reject(error);
         }
     });
 }
@@ -51,14 +51,14 @@ function getSetsByTheme(theme) {
         try {
             const filteredSets = sets.filter(set => set.theme.toLowerCase().includes(theme.toLowerCase()));
             if (filteredSets.length > 0) {
-                resolve(filteredSets); 
+                resolve(filteredSets);
             } else {
                 reject(`Unable to find sets with theme containing: ${theme}`);
             }
         } catch (error) {
-            reject(error); 
+            reject(error);
         }
     });
 }
 
-export default { initialize, getAllSets, getSetByNum, getSetsByTheme };
+module.exports = { initialize, getAllSets, getSetByNum, getSetsByTheme };
