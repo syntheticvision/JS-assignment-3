@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./views/**/*.html",
@@ -8,9 +9,9 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('daisyui')
+    require('daisyui'),
   ],
   daisyui: {
-    themes: ["fantasy"], // You can choose a theme from DaisyUI's theme list
-  },
+    themes: ["fantasy"], // You can change this theme as needed
+  }
 }

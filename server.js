@@ -13,51 +13,55 @@
 ********************************************************************************/
 const express = require('express');
 const path = require('path');
-const legoData = require('./modules/legoSets');
+const legoData = require("./modules/legoSets");
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(express.json());
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-legoData.initialize().then(() => {
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
+
+legoData.initialize()
+  .then(() => {
+
+    app.get('/', (req, res) => {
+      res.sendFile(path.join(__dirname, 'views/home.html'));
     });
-}).catch(error => {
-    console.error('Failed to initialize Lego data:', error);
-});
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'home.html'));
-});
+    app.get('/about', (req, res) => {
+      res.sendFile(path.join(__dirname, 'views/about.html'));
+    });
 
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'about.html'));
-});
-
-app.get('/lego/sets', (req, res) => {
-    const theme = req.query.theme;
-    if (theme) {
+    app.get('/lego/sets', (req, res) => {
+      const theme = req.query.theme;
+      if (theme) {
         legoData.getSetsByTheme(theme)
-            .then(sets => res.json(sets))
-            .catch(error => res.status(404).send(error));
-    } else {
+          .then(sets => res.json(sets))
+          .catch(err => res.status(404).send(err));
+      } else {
         legoData.getAllSets()
-            .then(sets => res.json(sets))
-            .catch(error => res.status(404).send(error));
-    }
-});
+          .then(sets => res.json(sets))
+          .catch(err => res.status(404).send(err));
+      }
+    });
 
-app.get('/lego/sets/:setNum', (req, res) => {
-    const setNum = req.params.setNum;
-    legoData.getSetByNum(setNum)
+    app.get('/lego/sets/:setNum', (req, res) => {
+      const setNum = req.params.setNum;
+      legoData.getSetByNum(setNum)
         .then(set => res.json(set))
-        .catch(error => res.status(404).send(error));
-});
+        .catch(err => res.status(404).send(err));
+    });
 
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
+    app.use((req, res) => {
+      res.status(404).sendFile(path.join(__dirname, 'views/404.html'));
+    });
+
+    app.listen(PORT, () => {
+      console.log(`Server listening on port: ${PORT}`);
+    });
+  })
+  .catch(err => {
+    console.error('Failed to initialize legoData:', err);
+  });
+
+module.exports = app;
